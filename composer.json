@@ -1,5 +1,10 @@
 {
     "name": "shoptet/shoptet-wp-common",
     "description": "",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Shoptet": "src/"
+        }
+    }
 }
