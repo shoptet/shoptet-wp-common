@@ -5,8 +5,23 @@ namespace Shoptet;
 class ShoptetExternal {
 
   static function init() {
+    add_action( 'customize_register', [ get_called_class(), 'customize_register' ] );
     add_filter( 'get_shoptet_footer', [ get_called_class(), 'get_footer' ] );
     add_shortcode( 'shp_cta' , [ get_called_class(), 'get_cta' ] );
+  }
+
+  static function customize_register( $wp_customize ) {
+    $wp_customize->add_section('shp_wp_general_settings', [
+      'title' => 'Shoptet WP General Settings',
+    ] );
+    $wp_customize->add_setting('footer_id_setting', [
+      'default' => 'shoptetcz',
+    ] );
+    $wp_customize->add_control('footer_id_setting', [
+      'label' => 'Footer ID',
+      'section' => 'shp_wp_general_settings',
+      'type' => 'text',
+    ] );
   }
 
   static function get_id() {
