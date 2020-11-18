@@ -1,5 +1,6 @@
 {
     "name": "shoptet/shoptet-wp-common",
+    "type": "library",
     "description": "",
     "require": {},
     "autoload": {
