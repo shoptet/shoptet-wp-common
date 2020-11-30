@@ -33,6 +33,9 @@ class ShoptetSecurity {
     if ( isset( $endpoints['/wp/v2/users/(?P<id>[\d]+)'] ) ) {
       unset( $endpoints['/wp/v2/users/(?P<id>[\d]+)'] );
     }
+    if ( isset( $endpoints['/oembed/1.0/embed'] ) ) {
+      unset( $endpoints['/oembed/1.0/embed'] );
+    }
     return $endpoints;
   }
 
