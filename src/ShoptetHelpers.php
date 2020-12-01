@@ -20,11 +20,4 @@ class ShoptetHelpers {
     return sprintf( $url_format, $tld, ltrim( $path, '/' ) );
   }
 
-  static function load_template_mo_file( $domain = 'shoptet' ) {
-    $locale = apply_filters( 'theme_locale', determine_locale(), $domain );
-    $mofile = $domain . '-' . $locale . '.mo';
-    $path = get_template_directory() . '/languages/' . $mofile;
-    load_textdomain( $domain, $path );
-  }
-
 }
