@@ -18,7 +18,7 @@ class ShoptetSecurity {
   }
 
   static function reject_user_enumeration() {
-    if ( !empty($_GET['author']) ) {
+    if ( !is_admin() && !empty($_GET['author']) ) {
       wp_redirect(home_url());
       exit();
     }
