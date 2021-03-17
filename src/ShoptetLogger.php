@@ -9,6 +9,8 @@ class ShoptetLogger {
       wp_sentry_safe( function ( \Sentry\State\HubInterface $client ) use ( $e ) {
         $client->captureException( $e );
       } );
+    } else {
+      error_log($e->getMessage());
     }
   }
 
