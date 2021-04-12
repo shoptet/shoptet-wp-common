@@ -50,4 +50,25 @@ class ShoptetExternal {
     return $footer;
   }
 
+  static function get_blog_posts( $args = [] ) {
+    $url = add_query_arg( $args, 'https://blog.shoptet.cz/wp-json/wp/v2/posts' );
+    $transient = wp_hash( 'shoptet_blog_posts' . $url );
+
+    if ( false === ($posts = get_transient($transient)) ) {
+      $response = wp_remote_get($url);
+      if (is_wp_error($response)) {
+        ShoptetLogger::capture_exception($response->get_error_message());
+        return [];
+      }
+      if ( 200 != $response['response']['code'] ) {
+        ShoptetLogger::capture_exception(json_encode($response));
+        return [];
+      }
+      $posts = json_decode( $response['body'], true );
+      set_transient( $transient, $posts, 1 * HOUR_IN_SECONDS );
+    }
+    
+    return $posts;
+  }
+
 }
