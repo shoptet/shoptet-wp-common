@@ -52,7 +52,7 @@ class ShoptetExternal {
 
   static function get_blog_posts( $args = [] ) {
     $url = add_query_arg( $args, 'https://blog.shoptet.cz/wp-json/wp/v2/posts' );
-    $transient = crc32( 'shoptet_blog_posts_' . $url );
+    $transient = 'shoptet_blog_posts_' . crc32($url);
 
     if ( false === ($posts = get_transient($transient)) ) {
       $response = wp_remote_get($url);
