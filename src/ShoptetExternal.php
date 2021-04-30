@@ -57,11 +57,11 @@ class ShoptetExternal {
     if ( false === ($posts = get_transient($transient)) ) {
       $response = wp_remote_get($url);
       if (is_wp_error($response)) {
-        ShoptetLogger::capture_exception($response->get_error_message());
+        ShoptetLogger::capture_exception(new \Exception($response->get_error_message()));
         return [];
       }
       if ( 200 != $response['response']['code'] ) {
-        ShoptetLogger::capture_exception(json_encode($response));
+        ShoptetLogger::capture_exception(new \Exception(json_encode($response)));
         return [];
       }
       $posts = json_decode( $response['body'], true );
