@@ -55,7 +55,7 @@ class ShoptetStats {
 
   static function project_count_shortcode() {
     $project_count = self::get_stats_by_name( 'projectsCount' );
-    return apply_filters( 'shoptet_project_count', $project_count );
+    return number_format_i18n( $project_count );
   }
 
 }
