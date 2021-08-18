@@ -30,7 +30,7 @@ class ShoptetExternal {
 
   static function get_cta() {
 
-    if ( isset($_GET['force_footer']) || false === ( $footer = get_transient( 'shoptet_cta' ) ) ) {
+    if ( isset($_GET['force_footer']) || false === ( $cta = get_transient( 'shoptet_cta' ) ) ) {
       $cta_url = ShoptetHelpers::get_shoptet_url( '/action/ShoptetFooter/render/?id=' . urlencode(self::get_id()) . '&cta=1' );
       $cta = file_get_contents($cta_url);
       set_transient( 'shoptet_cta', $cta, 24 * HOUR_IN_SECONDS );
